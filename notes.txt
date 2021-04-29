@@ -1,0 +1,7 @@
+static generation
+- build all files at once
+- build all files when 1 changes
+
+incremental static generation (better for larger sites)
+- when 1st visit: generate the page
+- when 2nd+ visits happen: serve the static page
