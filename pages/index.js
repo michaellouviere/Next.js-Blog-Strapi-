@@ -22,7 +22,7 @@ export default function Home({articles}) {
 
 export async function getStaticProps() {
 	// get posts from our api
-	const res = await fetch('http://localhost:1337/articles');
+	const res = await fetch('https://strapi-cms-457bx.ondigitalocean.app/articles');
 	const articles = await res.json();
 
 	return {

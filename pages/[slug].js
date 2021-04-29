@@ -2,7 +2,7 @@ import Link from 'next/link';
 const marked = require("marked");
 
 export default function Article({article}) {
-	let content = marked(article.content);
+	let content = article.content ? marked(article.content) : '<p></p>';
 	return (
 		<div>
 			<Link href="/"><a>Go Home</a></Link>
@@ -14,7 +14,7 @@ export default function Article({article}) {
 
 //Rell next.js how many pages there are
 export async function getStaticPaths() {
-	const res = await fetch('http://localhost:1337/articles');
+	const res = await fetch('https://strapi-cms-457bx.ondigitalocean.app/articles');
 	const articles = await res.json();
 
 	const paths = articles.map((article) => ({
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const { slug } = params;
-	const res = await fetch(`http://localhost:1337/articles?slug=${slug}`);
+	const res = await fetch(`https://strapi-cms-457bx.ondigitalocean.app/articles?slug=${slug}`);
 	const data = await res.json();
 	const article = data[0];
 
